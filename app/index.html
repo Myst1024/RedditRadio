@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Reddit Radio</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+    <link rel="stylesheet" href="app.css">
+    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
+</head>
+<body>
+    <div id="mainPage">
+        <h1>Reddit Radio</h1>
+
+        <div id="postList" ng-app="postList" ng-controller="displayPosts">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Thumb</th>
+                    <th>Title</th>
+                    <th>Artist</th>
+                    <th>Song</th>
+                    <th>Genre</th>
+                    <th>Year</th>
+                </tr>
+                </thead>
+                <tr ng-repeat="post in apiResults">
+                    <td><img ng-src="{{post.thumbnail}}"></td>
+                    <td><a ng-href="{{post.url}}">{{post.title}}</a></td>
+                    <td><span>{{post.parsedTitle.artist}}</span></td>
+                    <td><span>{{post.parsedTitle.song}}</span></td>
+                    <td><span>{{post.parsedTitle.genre}}</span></td>
+                    <td><span>{{post.parsedTitle.year}}</span></td>
+                  </tr>
+            </table>
+            <!--test{{5 + 5}} {{testOut}} asdf: {{apiResults}}-->
+        </div>
+
+
+    </div>
+
+
+    <!-- In production use:
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+    -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="app.js"></script>
+    <script src="components/version/version.js"></script>
+    <script src="components/version/version-directive.js"></script>
+    <script src="components/version/interpolate-filter.js"></script>
+</body>
+</html>
