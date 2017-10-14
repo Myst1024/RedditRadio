@@ -14,12 +14,16 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="bootswatch.css">
 </head>
-<body>
+<body ng-app="postList" ng-controller="displayPosts">
     <div id="mainPage">
-        <h1>Reddit Radio</h1>
-
-        <div id="postList" ng-app="postList" ng-controller="displayPosts">
+        <h1 class="container">Reddit Radio</h1>
+        <div id="musicPlayer">
+            <div ng-bind-html="playingIframe"></div>
+        </div>
+        <div id="postList">
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -33,7 +37,8 @@
                 </thead>
                 <tr ng-repeat="post in apiResults">
                     <td><img ng-src="{{post.thumbnail}}"></td>
-                    <td><a ng-href="{{post.url}}">{{post.title}}</a></td>
+                    <td><a class="songLink" ng-click="setPlaying(post.media_embed.content)">{{post.title}}</a></td>
+                    <!--<td><a ng-href="{{post.url}}">{{post.title}}</a></td>-->
                     <td><span>{{post.parsedTitle.artist}}</span></td>
                     <td><span>{{post.parsedTitle.song}}</span></td>
                     <td><span>{{post.parsedTitle.genre}}</span></td>
@@ -52,6 +57,8 @@
     -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="app.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+
     <script src="components/version/version.js"></script>
     <script src="components/version/version-directive.js"></script>
     <script src="components/version/interpolate-filter.js"></script>

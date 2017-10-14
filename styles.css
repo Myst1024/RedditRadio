@@ -1,0 +1,9 @@
+#musicPlayer > div > iframe {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.songLink {
+    cursor:pointer;
+}

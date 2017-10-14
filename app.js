@@ -1,7 +1,7 @@
-var app = angular.module('postList', []);
+var app = angular.module('postList', ['ngSanitize']);
 
-app.controller('displayPosts', function($scope, $http) {
-    $http.get("https://www.reddit.com/r/listentothis.json?raw_json=1&limit=10")
+app.controller('displayPosts', function($scope, $http, $sce) {
+    $http.get("https://www.reddit.com/r/listentothis.json?raw_json=1&limit=50")
         .then(function(response) {
             var posts = response.data.data.children;
             posts = posts.filter(function(post){
@@ -15,6 +15,10 @@ app.controller('displayPosts', function($scope, $http) {
 
             $scope.apiResults = posts;
         });
+
+    $scope.setPlaying = function(url) {
+        $scope.playingIframe = $sce.trustAsHtml(url);
+    }
 });
 
 parseTitle = function(title) {
