@@ -13,7 +13,8 @@ app.controller('displayPosts', function($scope, $http, $sce) {
                 return post.data;
             });
 
-            $scope.apiResults = posts;
+            var filteredPosts = posts.filter(filterYoutube);
+            $scope.apiResults = filteredPosts;
         });
 
     $scope.setPlaying = function(url) {
@@ -36,3 +37,7 @@ parseTitle = function(title) {
 
     return songInfo;
 };
+
+function filterYoutube(url) {
+    return (url.media.type === "youtube.com")
+}
