@@ -23,3 +23,21 @@
   content: "|";
   padding-right: 0.3em;
 }
+
+div#postList {
+  padding: 20px 10%;
+}
+
+#postList td:first-child, #postList td:last-child {padding: 1% 3%;}
+
+#mainPage > h1 {
+  text-align: center;
+}
+
+#postList th {
+  text-align: center;
+}
+
+#postList td {
+  text-align: center;
+}
