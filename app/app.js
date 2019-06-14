@@ -39,5 +39,9 @@ parseTitle = function(title) {
 };
 
 function filterYoutube(url) {
-    return (url.media.type === "youtube.com")
-}
+    if (url.media === null) {
+        return false
+    } else {
+        return (url.media.type === "youtube.com")
+    }
+    }
