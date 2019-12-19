@@ -9,8 +9,11 @@ app.controller('displayPosts', function($scope, $http, $sce) {
             });
 
             posts = posts.map(function(post){ //taking out "kind" json keys, returning only child data
-                post.data.parsedTitle = parseTitle(post.data.title); //inserting parsed song info into post.data
-                return post.data;
+                const parsedTitle = parseTitle(post.data.title);
+                if parsedTitle !== {} {
+                    return post.data;
+                } else {
+                    return false;
             });
 
             var filteredPosts = posts.filter(filterYoutube);
@@ -29,11 +32,12 @@ parseTitle = function(title) {
     var decodedTitle = decodeURI(title);
 
     var splitTitle = titleRegex.exec(decodedTitle);
-
-    songInfo.artist = splitTitle[1];
-    songInfo.song = splitTitle[2];
-    songInfo.genre = splitTitle[3];
-    songInfo.year = splitTitle[4];
+    if (splitTitle[2].length > 0) {
+        songInfo.artist = splitTitle[1];
+        songInfo.song = splitTitle[2];
+        songInfo.genre = splitTitle[3];
+        songInfo.year = splitTitle[4];
+    }
 
     return songInfo;
 };
